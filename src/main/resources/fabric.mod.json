@@ -1,0 +1,26 @@
+{
+	"schemaVersion": 1,
+	"id": "wich",
+	"version": "${version}",
+	"name": "Pouches",
+	"description": "Pouches to carry mobs",
+	"authors": [ "dovewich" ],
+	"contact": {
+		"homepage": "https://www.wich.fun/",
+		"sources": ""
+	},
+	"license": "",
+	"icon": "assets/wich/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"fun.wich.Pouches"
+		]
+	},
+	"depends": {
+		"fabricloader": ">=0.17.3",
+		"minecraft": ">=1.21.9",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}

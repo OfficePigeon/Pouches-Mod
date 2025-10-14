@@ -1,0 +1,4 @@
+{
+  "item.pouch.empty": { "subtitle": "subtitles.item.pouch.empty", "sounds": [ "item/armor/equip_leather4", "item/armor/equip_leather6" ] },
+  "item.pouch.fill": { "subtitle": "subtitles.item.pouch.fill", "sounds": [ "item/armor/equip_leather1", "item/armor/equip_leather2", "item/armor/equip_leather5" ] }
+}
