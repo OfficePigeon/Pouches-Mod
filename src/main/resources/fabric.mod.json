@@ -3,7 +3,7 @@
 	"id": "wich",
 	"version": "${version}",
 	"name": "Pouches",
-	"description": "Pouches to carry mobs",
+	"description": "Pouches to carry mobs.",
 	"authors": [ "dovewich" ],
 	"contact": {
 		"homepage": "https://www.wich.fun/",
