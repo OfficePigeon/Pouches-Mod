@@ -66,6 +66,7 @@ public class PouchItem extends Item {
 			NbtCompound nbt = new NbtCompound();
 			nbt.putBoolean("IsBaby", entity.isBaby());
 			stack.set(DataComponentTypes.CUSTOM_DATA, NbtComponent.of(nbt));
+			if (entity instanceof Bucketable bucketable) bucketable.copyDataToStack(stack);
 		}
 	}
 }
