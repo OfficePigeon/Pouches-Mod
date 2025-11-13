@@ -1,5 +1,4 @@
 {
-  "replace": false,
   "values": [
 	{ "id": "minecraft:allay", "required": false },
 	{ "id": "minecraft:armadillo", "required": false },
@@ -21,6 +20,109 @@
 	{ "id": "minecraft:shulker", "required": false },
 	{ "id": "minecraft:silverfish", "required": false },
 	{ "id": "minecraft:vex", "required": false },
-	{ "id": "minecraft:wolf", "required": false }
+	{ "id": "minecraft:wolf", "required": false },
+	
+	{ "id": "wich:cluckshroom", "required": false },
+	
+	{ "id": "betterend:dragonfly", "required": false },
+	{ "id": "betterend:silk_moth", "required": false },
+	
+	{ "id": "betternether:firefly", "required": false },
+	{ "id": "betternether:skull", "required": false },
+	
+	{ "id": "cnb:cactem", "required": false },
+	{ "id": "cnb:little_grebe", "required": false },
+	{ "id": "cnb:lizard", "required": false },
+	{ "id": "cnb:minipad", "required": false },
+	{ "id": "cnb:sporeling", "required": false },
+	
+	{ "id": "crittersandcompanions:dragonfly", "required": false },
+	{ "id": "crittersandcompanions:ferret", "required": false },
+	{ "id": "crittersandcompanions:jumping_spider", "required": false },
+	{ "id": "crittersandcompanions:leaf_insect", "required": false },
+	{ "id": "crittersandcompanions:otter", "required": false },
+	{ "id": "crittersandcompanions:red_panda", "required": false },
+	{ "id": "crittersandcompanions:shima_enaga", "required": false },
+	
+	{ "id": "deeperdarker:sculk_centipede", "required": false },
+	{ "id": "deeperdarker:sculk_leech", "required": false },
+	{ "id": "deeperdarker:sculk_snapper", "required": false },
+	
+	{ "id": "duckling:duck", "required": false },
+	
+	{ "id": "endermanoverhaul:scarab", "required": false },
+	{ "id": "endermanoverhaul:spirit", "required": false },
+	
+	{ "id": "enderscape:rubblemite", "required": false },
+	{ "id": "enderscape:rustle", "required": false },
+	
+	{ "id": "friendsandfoes:copper_golem", "required": false },
+	{ "id": "friendsandfoes:crab", "required": false },
+	{ "id": "friendsandfoes:glare", "required": false },
+	{ "id": "friendsandfoes:rascal", "required": false },
+	{ "id": "friendsandfoes:mauler", "required": false },
+	
+	{ "id": "ghosts:ghost", "required": false },
+	{ "id": "ghosts:small_ghost", "required": false },
+	{ "id": "ghosts:kodama", "required": false },
+	
+	{ "id": "golemoverhaul:barrel_golem", "required": false },
+	{ "id": "golemoverhaul:candle_golem", "required": false },
+	{ "id": "golemoverhaul:coal_golem", "required": false },
+	{ "id": "golemoverhaul:honey_golem", "required": false },
+	{ "id": "golemoverhaul:terracotta_golem", "required": false },
+	
+	{ "id": "hamsters:hamster", "required": false },
+	
+	{ "id": "jagmkiwis:kiwi", "required": false },
+	
+	{ "id": "mobs_of_mythology:sporeling", "required": false },
+	
+	{ "id": "naturalist:bluejay", "required": false },
+	{ "id": "naturalist:boar", "required": false },
+	{ "id": "naturalist:butterfly", "required": false },
+	{ "id": "naturalist:canary", "required": false },
+	{ "id": "naturalist:cardinal", "required": false },
+	{ "id": "naturalist:caterpillar", "required": false },
+	{ "id": "naturalist:coral_snake", "required": false },
+	{ "id": "naturalist:duck", "required": false },
+	{ "id": "naturalist:dragonfly", "required": false },
+	{ "id": "naturalist:firefly", "required": false },
+	{ "id": "naturalist:finch", "required": false },
+	{ "id": "naturalist:lizard", "required": false },
+	{ "id": "naturalist:rattlestnake", "required": false },
+	{ "id": "naturalist:robin", "required": false },
+	{ "id": "naturalist:snake", "required": false },
+	{ "id": "naturalist:sparrow", "required": false },
+	{ "id": "naturalist:vulture", "required": false },
+	
+	{ "id": "promenade:capybara", "required": false },
+	{ "id": "promenade:duck", "required": false },
+	
+	{ "id": "ribbits:ribbit", "required": false },
+	
+	{ "id": "rottencreatures:scarab", "required": false },
+	{ "id": "rottencreatures:flying_scarab", "required": false },
+	
+	{ "id": "snuffles:snuffle", "required": false },
+	
+	{ "id": "spawn:ant", "required": false },
+	{ "id": "spawn:hamster", "required": false },
+	{ "id": "spawn:snail", "required": false },
+	
+	{ "id": "swampier_swamps:dragonfly", "required": false },
+	
+	{ "id": "wildernature:cassowary", "required": false },
+	{ "id": "wildernature:flamingo", "required": false },
+	{ "id": "wildernature:hedgehog", "required": false },
+	{ "id": "wildernature:owl", "required": false },
+	{ "id": "wildernature:pelican", "required": false },
+	{ "id": "wildernature:penguin", "required": false },
+	{ "id": "wildernature:raccoon", "required": false },
+	{ "id": "wildernature:red_wolf", "required": false },
+	{ "id": "wildernature:squirrel", "required": false },
+	{ "id": "wildernature:turkey", "required": false },
+	
+	{ "id": "wilderwild:penguin", "required": false }
   ]
 }

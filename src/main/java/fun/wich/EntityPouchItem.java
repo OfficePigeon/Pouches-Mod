@@ -26,8 +26,10 @@ public class EntityPouchItem extends PouchItem {
 		PlayerEntity player = context.getPlayer();
 		ItemStack stack = context.getStack();
 		this.onEmptied(player, context.getWorld(), stack, context.getBlockPos().offset(context.getSide()));
-		player.incrementStat(Stats.USED.getOrCreateStat(this));
-		player.setStackInHand(context.getHand(), getEmptiedStack(stack, player));
+		if (player != null) {
+			player.incrementStat(Stats.USED.getOrCreateStat(this));
+			player.setStackInHand(context.getHand(), getEmptiedStack(stack, player));
+		}
 		return ActionResult.SUCCESS;
 	}
 	@Override
@@ -51,10 +53,6 @@ public class EntityPouchItem extends PouchItem {
 			return Text.translatable("item.wich.pouch_of").append(mob).formatted(Formatting.WHITE);
 		}
 		return super.getName(stack);
-	}
-	public EntityType<?> getEntityType(ItemStack stack) {
-		TypedEntityData<EntityType<?>> typedEntityData = stack.get(DataComponentTypes.ENTITY_DATA);
-		return typedEntityData != null ? typedEntityData.getType() : null;
 	}
 	public void onEmptied(LivingEntity user, World world, ItemStack stack, BlockPos pos) {
 		if (world instanceof ServerWorld serverWorld) {
