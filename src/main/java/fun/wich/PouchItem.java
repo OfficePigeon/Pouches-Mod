@@ -32,12 +32,12 @@ public class PouchItem extends Item {
 		if (player.getEntityWorld() instanceof ServerWorld serverWorld) {
 			if (!(entity instanceof PlayerEntity)) {
 				GameRules rules = serverWorld.getGameRules();
-				EntityType<?> enityType = entity.getType();
-				if (!enityType.isIn(Pouches.TAG_NEVER_POUCHABLE)) { //Some entities should *NEVER* be pouched
+				EntityType<?> entityType = entity.getType();
+				if (!entityType.isIn(Pouches.TAG_NEVER_POUCHABLE)) { //Some entities should *NEVER* be pouched
 					if (rules.getValue(Pouches.ALLOW_POUCHING_ALL) //Allow pouching all entities
 							|| (rules.getValue(Pouches.ALLOW_POUCHING_BABY) //Allow babies whether tagged or not
 							&& (entity.isBaby() || (entity instanceof SlimeEntity slime && slime.getSize() <= 1)))
-							|| enityType.isIn(Pouches.TAG_POUCHABLE)) { //Limit to tagged entity types
+							|| entityType.isIn(Pouches.TAG_POUCHABLE)) { //Limit to tagged entity types
 						if (stack.getItem() == Pouches.POUCH && entity.isAlive()) {
 							entity.playSound(Pouches.ITEM_POUCH_FILL, 1.0F, 1.0F);
 							ItemStack itemStack2 = new ItemStack(Pouches.FILLED_POUCH);
