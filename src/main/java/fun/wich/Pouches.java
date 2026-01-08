@@ -39,6 +39,7 @@ public class Pouches implements ModInitializer {
 	public static final GameRules.Key<GameRules.BooleanRule> ALLOW_POUCHING_ALL = GameRuleRegistry.register("allowPouchingAllMobs", GameRules.Category.MOBS, GameRuleFactory.createBooleanRule(false));
 
 	public static final TagKey<EntityType<?>> TAG_POUCHABLE = TagKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(MOD_ID, "pouchable"));
+	public static final TagKey<EntityType<?>> TAG_NEVER_POUCHABLE = TagKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(MOD_ID, "never_pouchable"));
 
 	public static Item register(String name, Function<Item.Settings, Item> itemFactory, Item.Settings settings) {
 		RegistryKey<Item> key = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(MOD_ID, name));

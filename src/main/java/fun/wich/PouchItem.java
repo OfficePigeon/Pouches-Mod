@@ -32,26 +32,30 @@ public class PouchItem extends Item {
 		if (player.getEntityWorld() instanceof ServerWorld serverWorld) {
 			if (!(entity instanceof PlayerEntity)) {
 				GameRules rules = serverWorld.getGameRules();
-				if (rules.getBoolean(Pouches.ALLOW_POUCHING_ALL) //Allow pouching all entities
-						|| (rules.getBoolean(Pouches.ALLOW_POUCHING_BABY) //Allow babies whether tagged or not
+				EntityType<?> entityType = entity.getType();
+				if (!entityType.isIn(Pouches.TAG_NEVER_POUCHABLE)) { //Some entities should *NEVER* be pouched {
+					if (rules.getBoolean(Pouches.ALLOW_POUCHING_ALL) //Allow pouching all entities
+							|| (rules.getBoolean(Pouches.ALLOW_POUCHING_BABY) //Allow babies whether tagged or not
 							&& (entity.isBaby() || (entity instanceof SlimeEntity slime && slime.getSize() <= 1)))
-						|| entity.getType().isIn(Pouches.TAG_POUCHABLE)) { //Limit to tagged entity types
-					if (stack.getItem() == Pouches.POUCH && entity.isAlive()) {
-						entity.playSound(Pouches.ITEM_POUCH_FILL, 1.0F, 1.0F);
-						ItemStack itemStack2 = new ItemStack(Pouches.FILLED_POUCH);
-						entity.dismountVehicle();
-						entity.removeAllPassengers();
-						copyDataToStack(entity, itemStack2);
-						if (player.isInCreativeMode()) {
-							if (!player.getInventory().contains(itemStack2)) player.getInventory().insertStack(itemStack2);
+							|| entityType.isIn(Pouches.TAG_POUCHABLE)) { //Limit to tagged entity types
+						if (stack.getItem() == Pouches.POUCH && entity.isAlive()) {
+							entity.playSound(Pouches.ITEM_POUCH_FILL, 1.0F, 1.0F);
+							ItemStack itemStack2 = new ItemStack(Pouches.FILLED_POUCH);
+							entity.dismountVehicle();
+							entity.removeAllPassengers();
+							copyDataToStack(entity, itemStack2);
+							if (player.isInCreativeMode()) {
+								if (!player.getInventory().contains(itemStack2))
+									player.getInventory().insertStack(itemStack2);
+							}
+							else if (stack.getCount() > 1) {
+								stack.decrement(1);
+								player.getInventory().insertStack(itemStack2);
+							}
+							else player.setStackInHand(hand, itemStack2);
+							entity.discard();
+							return Optional.of(ActionResult.SUCCESS);
 						}
-						else if (stack.getCount() > 1) {
-							stack.decrement(1);
-							player.getInventory().insertStack(itemStack2);
-						}
-						else player.setStackInHand(hand, itemStack2);
-						entity.discard();
-						return Optional.of(ActionResult.SUCCESS);
 					}
 				}
 			}
