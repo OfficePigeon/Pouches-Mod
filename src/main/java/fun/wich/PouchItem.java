@@ -14,6 +14,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.ErrorReporter;
 import net.minecraft.util.Hand;
 import net.minecraft.world.GameRules;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Optional;
 
@@ -56,6 +57,10 @@ public class PouchItem extends Item {
 			}
 		}
 		return Optional.empty();
+	}
+
+	public static void Mixin_TryPouching(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
+		if (player.getStackInHand(hand).isOf(Pouches.POUCH)) cir.setReturnValue(ActionResult.PASS);
 	}
 
 	protected static void copyDataToStack(LivingEntity entity, ItemStack stack) {
