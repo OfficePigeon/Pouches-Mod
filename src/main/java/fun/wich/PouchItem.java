@@ -13,7 +13,8 @@ import net.minecraft.storage.NbtWriteView;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ErrorReporter;
 import net.minecraft.util.Hand;
-import net.minecraft.world.GameRules;
+import net.minecraft.world.rule.GameRules;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Optional;
 
@@ -31,31 +32,38 @@ public class PouchItem extends Item {
 		if (player.getEntityWorld() instanceof ServerWorld serverWorld) {
 			if (!(entity instanceof PlayerEntity)) {
 				GameRules rules = serverWorld.getGameRules();
-				if (rules.getBoolean(Pouches.ALLOW_POUCHING_ALL) //Allow pouching all entities
-						|| (rules.getBoolean(Pouches.ALLOW_POUCHING_BABY) //Allow babies whether tagged or not
+				EntityType<?> enityType = entity.getType();
+				if (!enityType.isIn(Pouches.TAG_NEVER_POUCHABLE)) { //Some entities should *NEVER* be pouched
+					if (rules.getValue(Pouches.ALLOW_POUCHING_ALL) //Allow pouching all entities
+							|| (rules.getValue(Pouches.ALLOW_POUCHING_BABY) //Allow babies whether tagged or not
 							&& (entity.isBaby() || (entity instanceof SlimeEntity slime && slime.getSize() <= 1)))
-						|| entity.getType().isIn(Pouches.TAG_POUCHABLE)) { //Limit to tagged entity types
-					if (stack.getItem() == Pouches.POUCH && entity.isAlive()) {
-						entity.playSound(Pouches.ITEM_POUCH_FILL, 1.0F, 1.0F);
-						ItemStack itemStack2 = new ItemStack(Pouches.FILLED_POUCH);
-						entity.dismountVehicle();
-						entity.removeAllPassengers();
-						copyDataToStack(entity, itemStack2);
-						if (player.isInCreativeMode()) {
-							if (!player.getInventory().contains(itemStack2)) player.getInventory().insertStack(itemStack2);
+							|| enityType.isIn(Pouches.TAG_POUCHABLE)) { //Limit to tagged entity types
+						if (stack.getItem() == Pouches.POUCH && entity.isAlive()) {
+							entity.playSound(Pouches.ITEM_POUCH_FILL, 1.0F, 1.0F);
+							ItemStack itemStack2 = new ItemStack(Pouches.FILLED_POUCH);
+							entity.dismountVehicle();
+							entity.removeAllPassengers();
+							copyDataToStack(entity, itemStack2);
+							if (player.isInCreativeMode()) {
+								if (!player.getInventory().contains(itemStack2)) player.getInventory().insertStack(itemStack2);
+							}
+							else if (stack.getCount() > 1) {
+								stack.decrement(1);
+								player.getInventory().insertStack(itemStack2);
+							}
+							else player.setStackInHand(hand, itemStack2);
+							entity.discard();
+							return Optional.of(ActionResult.SUCCESS);
 						}
-						else if (stack.getCount() > 1) {
-							stack.decrement(1);
-							player.getInventory().insertStack(itemStack2);
-						}
-						else player.setStackInHand(hand, itemStack2);
-						entity.discard();
-						return Optional.of(ActionResult.SUCCESS);
 					}
 				}
 			}
 		}
 		return Optional.empty();
+	}
+
+	public static void Mixin_TryPouching(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
+		if (player.getStackInHand(hand).isOf(Pouches.POUCH)) cir.setReturnValue(ActionResult.PASS);
 	}
 
 	protected static void copyDataToStack(LivingEntity entity, ItemStack stack) {

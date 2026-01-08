@@ -2,8 +2,7 @@ package fun.wich;
 
 import net.fabricmc.api.ModInitializer;
 
-import net.fabricmc.fabric.api.gamerule.v1.GameRuleFactory;
-import net.fabricmc.fabric.api.gamerule.v1.GameRuleRegistry;
+import net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
@@ -15,7 +14,8 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
-import net.minecraft.world.GameRules;
+import net.minecraft.world.rule.GameRule;
+import net.minecraft.world.rule.GameRuleCategory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,10 +35,11 @@ public class Pouches implements ModInitializer {
 	public static final Item POUCH = register("pouch", PouchItem::new, new Item.Settings());
 	public static final Item FILLED_POUCH = register("filled_pouch", EntityPouchItem::new, new Item.Settings());
 
-	public static final GameRules.Key<GameRules.BooleanRule> ALLOW_POUCHING_BABY = GameRuleRegistry.register("allowPouchingBabyMobs", GameRules.Category.MOBS, GameRuleFactory.createBooleanRule(true));
-	public static final GameRules.Key<GameRules.BooleanRule> ALLOW_POUCHING_ALL = GameRuleRegistry.register("allowPouchingAllMobs", GameRules.Category.MOBS, GameRuleFactory.createBooleanRule(false));
+	public static final GameRule<Boolean> ALLOW_POUCHING_BABY = GameRuleBuilder.forBoolean(true).category(GameRuleCategory.MOBS).buildAndRegister(Identifier.of(MOD_ID, "allow_pouching_baby_mobs"));
+	public static final GameRule<Boolean> ALLOW_POUCHING_ALL = GameRuleBuilder.forBoolean(false).category(GameRuleCategory.MOBS).buildAndRegister(Identifier.of(MOD_ID, "allow_pouching_all_mobs"));
 
 	public static final TagKey<EntityType<?>> TAG_POUCHABLE = TagKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(MOD_ID, "pouchable"));
+	public static final TagKey<EntityType<?>> TAG_NEVER_POUCHABLE = TagKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(MOD_ID, "never_pouchable"));
 
 	public static Item register(String name, Function<Item.Settings, Item> itemFactory, Item.Settings settings) {
 		RegistryKey<Item> key = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(MOD_ID, name));
